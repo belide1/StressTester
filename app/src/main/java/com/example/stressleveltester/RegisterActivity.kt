@@ -1,8 +1,10 @@
 package com.example.stressleveltester
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -50,6 +52,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.database.FirebaseDatabase
 
 class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,7 +67,7 @@ class RegisterActivity : ComponentActivity() {
 fun CreateAccountActivityScreen() {
 
     var jsfullname by remember { mutableStateOf("") }
-    var jsgraduation by remember { mutableStateOf("") }
+    var age by remember { mutableStateOf("") }
     var jsemail by remember { mutableStateOf("") }
     var jspassword by remember { mutableStateOf("") }
     var jsconfirmpassword by remember { mutableStateOf("") }
@@ -139,8 +142,8 @@ fun CreateAccountActivityScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp),
-                value = jsgraduation,
-                onValueChange = { jsgraduation = it },
+                value = age,
+                onValueChange = { age = it },
                 label = { Text("Enter Profession") },
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
@@ -238,7 +241,34 @@ fun CreateAccountActivityScreen() {
             Spacer(modifier = Modifier.height(46.dp))
 
             Button(
-                onClick = { /* Handle login */ },
+                onClick = {
+                    when {
+                        jsemail.isEmpty() -> {
+                            Toast.makeText(context, " Please Enter Mail", Toast.LENGTH_SHORT).show()
+                        }
+                        jsfullname.isEmpty() -> {
+                            Toast.makeText(context, " Please Enter Name", Toast.LENGTH_SHORT).show()
+                        }
+
+                        age.isEmpty() -> {
+                            Toast.makeText(context, " Please Enter Age", Toast.LENGTH_SHORT).show()
+                        }
+                        jspassword.isEmpty() -> {
+                            Toast.makeText(context, " Please Enter Password", Toast.LENGTH_SHORT).show()
+                        }
+
+                        else -> {
+                            val testerData = TesterData(
+                                jsfullname,
+                                jsemail,
+                                age,
+                                jspassword
+                            )
+                            registerTester(testerData,context)
+                        }
+
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally),
@@ -287,3 +317,39 @@ fun CreateAccountActivityScreen() {
 
     }
 }
+
+fun registerTester(testerData: TesterData, context: Context) {
+
+    val firebaseDatabase = FirebaseDatabase.getInstance()
+    val databaseReference = firebaseDatabase.getReference("TesterData")
+
+    databaseReference.child(testerData.emailid.replace(".", ","))
+        .setValue(testerData)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(context, "You Registered Successfully", Toast.LENGTH_SHORT)
+                    .show()
+
+            } else {
+                Toast.makeText(
+                    context,
+                    "Registration Failed",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+        .addOnFailureListener { _ ->
+            Toast.makeText(
+                context,
+                "Something went wrong",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+}
+
+data class TesterData(
+    var name : String = "",
+    var emailid : String = "",
+    var age : String = "",
+    var password: String = ""
+)

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "512143609815",
+    "project_id": "strestester-4971f",
+    "storage_bucket": "strestester-4971f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512143609815:android:80f0895d1e3ce3b3b60592",
+        "android_client_info": {
+          "package_name": "com.example.stressleveltester"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoxCujwxAyz7J9I5DEz2GhKQbSMtfLN4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
