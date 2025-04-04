@@ -246,6 +246,8 @@ fun loginTester(testerData: TesterData, context: Context) {
             if (dbData != null) {
                 if (dbData.password == testerData.password) {
 
+                    context.startActivity(Intent(context, BaseActivity::class.java))
+
                     Toast.makeText(context, "Login Sucessfully", Toast.LENGTH_SHORT).show()
 
                 } else {
