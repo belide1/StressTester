@@ -13,8 +13,18 @@
         android:theme="@style/Theme.StressLevelTester"
         tools:targetApi="31">
         <activity
-            android:name=".BaseActivity"
+            android:name=".StartTestActivity"
             android:exported="false" />
+        <activity
+            android:name=".BaseActivity"
+            android:exported="true"
+            android:theme="@style/Base.Theme.StressLevelTester">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity
             android:name=".HomeActivity"
             android:exported="false" />
@@ -29,11 +39,12 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.StressLevelTester">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
     </application>
 

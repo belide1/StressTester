@@ -2,4 +2,9 @@
 <resources>
 
     <style name="Theme.StressLevelTester" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="Base.Theme.StressLevelTester" parent="Theme.Material3.DayNight.NoActionBar">
+
+    </style>
+
 </resources>
