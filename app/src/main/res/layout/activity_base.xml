@@ -21,13 +21,14 @@
         android:id="@+id/stressLevelNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="6dp"
+        android:paddingVertical="8dp"
+        android:background="@color/bttm_navbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:id="@+id/btStressHome"
+            android:id="@+id/btStartTest"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -37,25 +38,34 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/baseline_home_24"/>
+                android:src="@drawable/nav_start_test"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Home"
-                android:textColor="@color/black"
+                android:text="Start Test"
+                android:textColor="@color/white"
                 android:textStyle="bold"/>
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"/>
+
 
         </LinearLayout>
 
         <View
+            android:visibility="gone"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/black"/>
 
 
         <LinearLayout
-            android:id="@+id/btManageDetails"
+            android:id="@+id/btTestSummary"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -65,18 +75,27 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/baseline_home_24"/>
+                android:src="@drawable/nav_summary_test"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Manage Details"
-                android:textColor="@color/black"
+                android:text="Test Summary"
+                android:textColor="@color/white"
                 android:textStyle="bold"/>
+
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"/>
 
         </LinearLayout>
 
         <View
+            android:visibility="gone"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:background="@color/black"/>
@@ -92,14 +111,22 @@
             <ImageView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:src="@drawable/baseline_home_24"/>
+                android:src="@drawable/nav_profile"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="My Profile"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textStyle="bold"/>
+
+
+            <View
+                android:visibility="gone"
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"/>
 
         </LinearLayout>
 

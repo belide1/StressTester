@@ -10,4 +10,12 @@
 
     <color name="SoftBlue">#89ABE3</color>
     <color name="CoralRose">#EA738D</color>
+
+
+    <color name="bttm_navbar">#070f34</color>
+
+    <color name="card_bg_color">#325fa7</color>
+
+
+
 </resources>
