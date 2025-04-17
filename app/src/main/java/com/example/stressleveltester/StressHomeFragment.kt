@@ -100,7 +100,7 @@ fun StressLevelTesterHomeScreen() {
         Column(
             modifier = Modifier
                 .clickable {
-                    context.startActivity(Intent(context, LoginActivity::class.java))
+                    context.startActivity(Intent(context, StartTestActivity::class.java))
                 }
                 .padding(horizontal = 12.dp, vertical = 12.dp)
                 .fillMaxWidth()
