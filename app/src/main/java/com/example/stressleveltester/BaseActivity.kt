@@ -53,6 +53,9 @@ class BaseActivity : AppCompatActivity() {
         }
 
         btSummaryTest.setOnClickListener {
+
+            openFragment(TestResultFragment())
+
             showView(view2)
             hideView(view1)
             hideView(view3)
@@ -60,6 +63,8 @@ class BaseActivity : AppCompatActivity() {
         }
 
         btMyProfile.setOnClickListener {
+            openFragment(ProfileFragment())
+
             showView(view3)
             hideView(view1)
             hideView(view2)

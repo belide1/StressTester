@@ -330,6 +330,9 @@ fun registerTester(testerData: TesterData, context: Context) {
                 Toast.makeText(context, "You Registered Successfully", Toast.LENGTH_SHORT)
                     .show()
 
+                context.startActivity(Intent(context, LoginActivity::class.java))
+                (context as Activity).finish()
+
             } else {
                 Toast.makeText(
                     context,

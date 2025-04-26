@@ -145,6 +145,9 @@ fun StressLevelTesterHomeScreen() {
             Column(
                 modifier = Modifier
                     .padding(horizontal = 12.dp, vertical = 12.dp)
+                    .clickable {
+                        context.startActivity(Intent(context, TestRecordActivity::class.java))
+                    }
                     .weight(1f)
                     .background(
                         color = colorResource(id = R.color.card_bg_color),
@@ -170,7 +173,7 @@ fun StressLevelTesterHomeScreen() {
 
                 Text(
                     modifier = Modifier,
-                    text = "Manage Tests",
+                    text = "Test\nRecords",
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleLarge.copy(
                         color = Color.White,
@@ -183,6 +186,10 @@ fun StressLevelTesterHomeScreen() {
             Column(
                 modifier = Modifier
                     .padding(horizontal = 12.dp, vertical = 12.dp)
+                    .clickable {
+                        context.startActivity(Intent(context, DeleteTestActivity::class.java))
+
+                    }
                     .weight(1f)
                     .fillMaxWidth()
                     .background(
@@ -209,7 +216,7 @@ fun StressLevelTesterHomeScreen() {
 
                 Text(
                     modifier = Modifier,
-                    text = "Delete Record",
+                    text = "Delete\nRecord",
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.titleLarge.copy(
                         color = Color.White,

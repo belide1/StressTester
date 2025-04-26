@@ -80,7 +80,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Test Summary"
+                android:text="Graph Analysis"
                 android:textColor="@color/white"
                 android:textStyle="bold"/>
 

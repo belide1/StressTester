@@ -6,12 +6,18 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon_streeelevel"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon_streeelevel"
         android:supportsRtl="true"
         android:theme="@style/Theme.StressLevelTester"
         tools:targetApi="31">
+        <activity
+            android:name=".DeleteTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestRecordActivity"
+            android:exported="false" />
         <activity
             android:name=".StartTestActivity"
             android:exported="false" />
@@ -19,11 +25,13 @@
             android:name=".BaseActivity"
             android:exported="true"
             android:theme="@style/Base.Theme.StressLevelTester">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".HomeActivity"
@@ -39,12 +47,11 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.StressLevelTester">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

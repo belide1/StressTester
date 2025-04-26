@@ -3,9 +3,11 @@ package com.example.stressleveltester
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.ComponentActivity
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -38,21 +40,23 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import kotlinx.coroutines.delay
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            MainScreen()
+            MainScreen(this)
         }
     }
 }
 
 
 @Composable
-fun MainScreen() {
+fun MainScreen(fragmentActivity: FragmentActivity) {
     var splashStatus by remember { mutableStateOf(true) }
 
     val context = LocalContext.current as Activity
@@ -66,13 +70,54 @@ fun MainScreen() {
         LaunchView()
     } else {
 
-        val currentStatus = StressLevelTesterData.readLS(context)
+        if (StressLevelTesterData.getLoginStatus(context)) {
+            val biometricManager = BiometricManager.from(fragmentActivity)
+            if (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG) == BiometricManager.BIOMETRIC_SUCCESS) {
+                val executor = ContextCompat.getMainExecutor(fragmentActivity)
+                val biometricPrompt =
+                    BiometricPrompt(
+                        fragmentActivity,
+                        executor,
+                        object : BiometricPrompt.AuthenticationCallback() {
+                            override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                                super.onAuthenticationSucceeded(result)
+                                openHome(context)
+                            }
 
-        if (currentStatus) {
-            openHome(context)
+                            override fun onAuthenticationError(
+                                errorCode: Int,
+                                errString: CharSequence
+                            ) {
+                                super.onAuthenticationError(errorCode, errString)
+                                Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG)
+                                    .show()
+                            }
+
+                            override fun onAuthenticationFailed() {
+                                super.onAuthenticationFailed()
+                                Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG)
+                                    .show()
+                            }
+                        })
+
+                val promptInfo = BiometricPrompt.PromptInfo.Builder()
+                    .setTitle("FingerPrint Verification")
+                    .setSubtitle("Place your finger to continue")
+                    .setNegativeButtonText("Close")
+                    .build()
+
+                biometricPrompt.authenticate(promptInfo)
+            } else {
+                Toast.makeText(
+                    fragmentActivity,
+                    "This device doesn't support fingerprint",
+                    Toast.LENGTH_LONG
+                ).show()
+                openHome(context)
+
+            }
         } else {
             openLogin(context)
-
         }
     }
 }
@@ -137,13 +182,13 @@ fun LaunchView() {
 
                 Image(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
-                    painter = painterResource(id = R.drawable.stress_level_tester),
+                    painter = painterResource(id = R.drawable.icon_streeelevel),
                     contentDescription = "Stress Level Tester",
                 )
 
                 Spacer(modifier = Modifier.height(18.dp))
 
-                /*
+
                 Button(
                     onClick = { /* Handle login */ },
                     modifier = Modifier
@@ -164,14 +209,13 @@ fun LaunchView() {
                     )
                 ) {
                     Text(
-                        text = "Opportunities",
+                        text = "By\nBelide Sravan",
+                        textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineSmall.copy(fontWeight = FontWeight.Bold),
                     )
                 }
-                */
 
             }
-
 
         }
     }

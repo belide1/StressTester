@@ -62,8 +62,8 @@ class LoginActivity : ComponentActivity() {
 
 @Composable
 fun UserLoginActivityScreen() {
-    var jsemail by remember { mutableStateOf("") }
-    var jspassword by remember { mutableStateOf("") }
+    var testerMail by remember { mutableStateOf("") }
+    var testerPassword by remember { mutableStateOf("") }
 
     val context = LocalContext.current as Activity
 
@@ -99,8 +99,8 @@ fun UserLoginActivityScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp),
-                value = jsemail,
-                onValueChange = { jsemail = it },
+                value = testerMail,
+                onValueChange = { testerMail = it },
                 label = { Text("Enter Email") },
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
@@ -132,8 +132,8 @@ fun UserLoginActivityScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp),
-                value = jspassword,
-                onValueChange = { jspassword = it },
+                value = testerPassword,
+                onValueChange = { testerPassword = it },
                 label = { Text("Enter Password") },
                 colors = TextFieldDefaults.colors(
                     unfocusedContainerColor = Color.White,
@@ -164,11 +164,11 @@ fun UserLoginActivityScreen() {
             Button(
                 onClick = {
                     when {
-                        jsemail.isEmpty() -> {
-                            Toast.makeText(context, " Please Enter Mail", Toast.LENGTH_SHORT).show()
+                        testerMail.isEmpty() -> {
+                            Toast.makeText(context, "Please Enter Mail", Toast.LENGTH_SHORT).show()
                         }
 
-                        jspassword.isEmpty() -> {
+                        testerPassword.isEmpty() -> {
                             Toast.makeText(context, " Please Enter Password", Toast.LENGTH_SHORT)
                                 .show()
                         }
@@ -176,9 +176,9 @@ fun UserLoginActivityScreen() {
                         else -> {
                             val testerData = TesterData(
                                 "",
-                                jsemail,
+                                testerMail,
                                 "",
-                                jspassword
+                                testerPassword
                             )
 
                             loginTester(testerData,context)
@@ -246,15 +246,13 @@ fun loginTester(testerData: TesterData, context: Context) {
             if (dbData != null) {
                 if (dbData.password == testerData.password) {
 
-                    StressLevelTesterData.writeLS(context, true)
-                    StressLevelTesterData.writeMail(context, dbData.emailid)
-                    StressLevelTesterData.writeUserName(context, dbData.name)
+                    StressLevelTesterData.saveLoginStatus(context, true)
+                    StressLevelTesterData.saveUserName(context, dbData.emailid)
+                    StressLevelTesterData.saveUserEmail(context, dbData.name)
 
 
                     context.startActivity(Intent(context, BaseActivity::class.java))
-
-                    Toast.makeText(context, "Login Sucessfully", Toast.LENGTH_SHORT).show()
-
+                    Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(context, "Seems Incorrect Credentials", Toast.LENGTH_SHORT).show()
                 }
