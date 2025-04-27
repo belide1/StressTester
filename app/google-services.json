@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "512143609815",
+    "firebase_url": "https://strestester-4971f-default-rtdb.firebaseio.com",
     "project_id": "strestester-4971f",
     "storage_bucket": "strestester-4971f.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:512143609815:android:80f0895d1e3ce3b3b60592",
+        "mobilesdk_app_id": "1:512143609815:android:dc853340fc3e68f9b60592",
         "android_client_info": {
-          "package_name": "com.example.stressleveltester"
+          "package_name": "stresslevelapp.tesside.belidesravan"
         }
       },
       "oauth_client": [],

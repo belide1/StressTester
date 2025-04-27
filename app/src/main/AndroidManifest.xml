@@ -22,7 +22,7 @@
             android:name=".StartTestActivity"
             android:exported="false" />
         <activity
-            android:name=".BaseActivity"
+            android:name="stresslevelapp.tesside.belidesravan.BaseActivity"
             android:exported="true"
             android:theme="@style/Base.Theme.StressLevelTester">
 

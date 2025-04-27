@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.stressleveltester"
+    namespace = "stresslevelapp.tesside.belidesravan"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.stressleveltester"
+        applicationId = "stresslevelapp.tesside.belidesravan"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
