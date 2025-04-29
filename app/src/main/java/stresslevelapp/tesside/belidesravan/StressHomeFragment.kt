@@ -227,6 +227,47 @@ fun StressLevelTesterHomeScreen() {
             }
         }
 
+        Column(
+            modifier = Modifier
+                .clickable {
+                    context.startActivity(Intent(context, TipsActivity::class.java))
+                }
+                .padding(horizontal = 12.dp, vertical = 12.dp)
+                .fillMaxWidth()
+                .background(
+                    color = colorResource(id = R.color.card_bg_color),
+                    shape = RoundedCornerShape(6.dp)
+                )
+                .border(
+                    width = 2.dp,
+                    color = colorResource(id = R.color.card_bg_color),
+                    shape = RoundedCornerShape(6.dp)
+                )
+                .padding(horizontal = 16.dp, vertical = 6.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            Image(
+                modifier = Modifier
+                    .size(64.dp),
+                painter = painterResource(id = R.drawable.nav_start_test),
+                contentDescription = "Tips"
+            )
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Text(
+                modifier = Modifier,
+                text = "Stress Management Tips",
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineMedium.copy(
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold
+                )
+            )
+
+        }
+
     }
 }
 

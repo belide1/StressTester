@@ -128,7 +128,7 @@ fun openLogin(context: Activity) {
 }
 
 fun openHome(context: Activity) {
-    context.startActivity(Intent(context, stresslevelapp.tesside.belidesravan.BaseActivity::class.java))
+    context.startActivity(Intent(context, BaseActivity::class.java))
     context.finish()
 }
 
@@ -190,7 +190,7 @@ fun LaunchView() {
 
 
                 Button(
-                    onClick = { /* Handle login */ },
+                    onClick = { /* Handle  */ },
                     modifier = Modifier
                         .fillMaxWidth()
                         .align(Alignment.CenterHorizontally),
